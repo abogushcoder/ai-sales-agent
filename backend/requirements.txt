@@ -7,3 +7,7 @@ starlette
 python-multipart
 pydantic
 sqlmodel
+stripe
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt

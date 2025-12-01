@@ -45,12 +45,12 @@ if (
 
 twilio_client = TwilioClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
-router = APIRouter()
+router = APIRouter(prefix="/inbound", tags=["inbound"])
 
 
 @router.get("/")
 async def root():
-    return {"message": "Twilio-ElevenLabs Integration Server"}
+    return {"message": "Twilio-ElevenLabs Inbound Integration Server"}
 
 
 @router.post("/incoming-call")

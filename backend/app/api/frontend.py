@@ -1,11 +1,11 @@
-# app/api/routes.py
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from typing import List
 
-router = APIRouter(prefix="/api")
+router = APIRouter(prefix="/frontend", tags=["frontend"])
 
 # You would derive dealership_id from auth; here we fake it
+# TODO: setup auth for this
 DEALERSHIP_ID = "demo-dealership"
 
 
