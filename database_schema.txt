@@ -1,0 +1,47 @@
+dealerships
+  id
+  name
+  timezone
+  phone_main
+  twilio_phone_number
+  elevenlabs_inbound_agent_id   (optional for later)
+  elevenlabs_outbound_agent_id  (optional for later)
+  ai_lead_percentage
+  agent_running
+
+users
+  id
+  dealership_id  -> FK dealerships.id
+  email
+  password_hash
+  role            ("owner", "manager", etc.)
+
+leads
+  id
+  dealership_id  -> FK
+  name
+  phone
+  email
+  interested_vehicle
+  source          ("website_form", "autotrader", etc.)
+  status          ("new", "contacted", "nurture", "closed_won", "closed_lost")
+
+calls
+  id
+  dealership_id  -> FK
+  lead_id        -> FK leads.id
+  twilio_call_sid
+  direction      ("inbound", "outbound")
+  agent_type     ("ai", "human")
+  status         ("completed", "no_answer", "failed")
+  start_time
+  end_time
+  outcome        ("appointment_booked", "not_interested", etc.)
+
+nurture_entries
+  id
+  dealership_id  -> FK
+  lead_id        -> FK
+  stage          ("followup_1", "followup_2", "long_term")
+  last_contacted
+  active         (bool)
