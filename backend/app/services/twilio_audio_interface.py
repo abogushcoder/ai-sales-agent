@@ -74,6 +74,5 @@ class TwilioAudioInterface(AudioInterface):
 
         elif event_type == "media" and self.input_callback:
             audio_data = base64.b64decode(data["media"]["payload"])
-            print(len(data["media"]["payload"]))
             # This goes into ElevenLabs STT
             self.input_callback(audio_data)

@@ -32,7 +32,7 @@ calls
   lead_id        -> FK leads.id
   twilio_call_sid
   direction      ("inbound", "outbound")
-  agent_type     ("ai", "human")
+  agent_id     ("ai", "human")
   status         ("completed", "no_answer", "failed")
   start_time
   end_time

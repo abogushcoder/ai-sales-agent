@@ -1,30 +1,43 @@
-// src/App.tsx
-import { NavLink, Route, Routes, Navigate } from "react-router-dom";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import PlanPage from "./pages/PlanPage";
+import LandingPage from "./pages/LandingPage";
 
 export default function App() {
+    const location = useLocation();
+    const isLandingPage = location.pathname === "/";
+
+    if (isLandingPage) {
+        return (
+            <Routes>
+                <Route path="/" element={<LandingPage />} />
+            </Routes>
+        );
+    }
+
     return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
-            <header className="border-b border-slate-800 bg-slate-900/70 backdrop-blur">
-                <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center text-sm font-bold">
-                            A
+        <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-brand-500/30">
+            <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center text-white font-bold text-lg shadow-[0_0_15px_rgba(14,165,233,0.4)]">
+                            X
                         </div>
                         <div>
-                            <div className="font-semibold">Autocall AI</div>
-                            <div className="text-xs text-slate-400">
-                                Sales agents for modern dealerships
+                            <div className="font-bold text-lg tracking-tight leading-none">X1 System</div>
+                            <div className="text-[10px] uppercase tracking-wider text-slate-500 font-medium mt-0.5">
+                                Intelligence Console
                             </div>
                         </div>
                     </div>
-                    <nav className="flex gap-4 text-sm">
+                    <nav className="flex gap-1 bg-slate-900/50 p-1 rounded-full border border-slate-800">
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
-                                `px-3 py-1 rounded-full ${isActive ? "bg-indigo-500 text-white" : "text-slate-300 hover:bg-slate-800"
+                                `px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${isActive
+                                    ? "bg-brand-600 text-white shadow-lg shadow-brand-500/20"
+                                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
                                 }`
                             }
                         >
@@ -33,7 +46,9 @@ export default function App() {
                         <NavLink
                             to="/analytics"
                             className={({ isActive }) =>
-                                `px-3 py-1 rounded-full ${isActive ? "bg-indigo-500 text-white" : "text-slate-300 hover:bg-slate-800"
+                                `px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${isActive
+                                    ? "bg-brand-600 text-white shadow-lg shadow-brand-500/20"
+                                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
                                 }`
                             }
                         >
@@ -42,7 +57,9 @@ export default function App() {
                         <NavLink
                             to="/plan"
                             className={({ isActive }) =>
-                                `px-3 py-1 rounded-full ${isActive ? "bg-indigo-500 text-white" : "text-slate-300 hover:bg-slate-800"
+                                `px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${isActive
+                                    ? "bg-brand-600 text-white shadow-lg shadow-brand-500/20"
+                                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800"
                                 }`
                             }
                         >
@@ -52,10 +69,12 @@ export default function App() {
                 </div>
             </header>
 
-            <main className="flex-1">
-                <div className="max-w-6xl mx-auto px-4 py-6">
+            <main className="flex-1 relative">
+                {/* Subtle background gradient for app pages */}
+                <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950 pointer-events-none -z-10" />
+
+                <div className="max-w-7xl mx-auto px-6 py-8">
                     <Routes>
-                        <Route path="/" element={<Navigate to="/dashboard" replace />} />
                         <Route path="/dashboard" element={<DashboardPage />} />
                         <Route path="/analytics" element={<AnalyticsPage />} />
                         <Route path="/plan" element={<PlanPage />} />
